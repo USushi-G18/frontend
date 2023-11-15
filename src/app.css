@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+	user-select: none;
+}
+
+.w-fill{
+	width: -webkit-fill-available;
+}
+
+.h-fill{
+	height: -webkit-fill-available;
+}
