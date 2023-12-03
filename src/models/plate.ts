@@ -1,11 +1,13 @@
+import { Menu } from './menu';
 
-type Plate = {
+export type Plate = {
     id: number,
     name: string,
     price: string,
+    ingredients: string[],
     category: string,
     menu: Menu,
-    description: string | undefined,
-    limit: number | undefined,
-    pieces: number,
+    img: string,
+    description: string,
+    limit: number,
 }
