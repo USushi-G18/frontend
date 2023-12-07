@@ -1,13 +1,12 @@
 <script lang="ts">
-	import type { OrderedPlate } from "../../models/ordered_plate";
     import OrderCard from "../../components/kitchen/OrderCard.svelte";
 	import type { Order } from "../../models/order";
-    import PlateCard from "../../components/restaurant/PlateCard.svelte";
     import { StateOfOrder } from "../../models/orderstate";
     import { Menu } from "../../models/menu";
     
 	let ord: { "orders": Order[] } = { "orders": [ {
 		table: 1,
+		timestamp: new Date(),
 		ordered_plate: {
 			plate: {
 				id: 1,
@@ -25,6 +24,7 @@
 		status: StateOfOrder.Ready
 	},{
 		table: 3,
+		timestamp: new Date(),
 		ordered_plate: {
 			plate: {
 				id: 1,
@@ -42,6 +42,7 @@
 		status: StateOfOrder.Received
 	},{
 		table: 2,
+		timestamp: new Date(),
 		ordered_plate: {
 			plate: {
 				id: 1,
@@ -59,6 +60,7 @@
 		status: StateOfOrder.Processing
 	},{
 		table: 4,
+		timestamp: new Date(),
 		ordered_plate: {
 			plate: {
 				id: 1,
@@ -83,7 +85,8 @@
 		if(!acc.has(table))
 			acc.set(table, [])
 		
-		acc.get(table)?.push(order);
+		if(order.status != StateOfOrder.Served)
+			acc.get(table)?.push(order);
 		
 		return acc
 	}, new Map<number, Order[]>)
@@ -91,7 +94,9 @@
 
 <div class="orders items-stretch w-full h-full m-7 self-start">
 	{#each Array.from(orders.keys()).sort() as table}
-		<OrderCard table={table} orders={orders.get(table)} />
+		{#if orders.get(table)?.length??0 > 0}
+			<OrderCard table={table} orders={orders.get(table)} />
+		{/if}
 	{/each}
 </div>
 
@@ -99,6 +104,6 @@
 	.orders {
 		display: grid;
 		grid-gap: 1.25rem;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 	}
 </style>
