@@ -150,12 +150,12 @@
 
 	$: categoriesMenu = piatti.filter(
 			(plate: Plate) => {
-				if(menu == Menu.Dinner)
+				if(menu == Menu.Carte)
 					return true
+				else if (menu == Menu.Dinner)
+					return plate.menu == Menu.Dinner || plate.menu == Menu.Lunch
 				else if (menu == Menu.Lunch)
-					return plate.menu == Menu.Lunch || plate.menu == Menu.Carte
-				else if (menu == Menu.Carte)
-					return plate.menu == Menu.Carte
+					return plate.menu == Menu.Lunch
 				else
 					return false
 			}
