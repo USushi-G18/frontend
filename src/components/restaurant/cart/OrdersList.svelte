@@ -2,7 +2,7 @@
 	import type { OrderedPlate } from '../../../models/ordered_plate';
 
 	import { cart } from '../../../store/cart';
-    import { List, Li, Tooltip, Heading } from "flowbite-svelte";
+    import { List, Li, Tooltip, Heading, Button } from "flowbite-svelte";
     import { TrashBinSolid } from "flowbite-svelte-icons";
     import AmountSelector from "../../AmountSelector.svelte";
 	
@@ -31,5 +31,8 @@
 				</Li>
 			{/each}
 		</List>
+	</div>
+	<div class="w-[15%] bottom-10 right-10 absolute flex flex-col gap-4">
+		<Button size="lg"  on:click={() => console.error("INVIA L'ORDINE")}>Invia Ordine</Button>
 	</div>
 {/if}
