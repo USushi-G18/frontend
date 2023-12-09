@@ -9,5 +9,4 @@ export type Plate = {
     menu: Menu,
     img: string,
     description: string,
-    limit: number,
 }

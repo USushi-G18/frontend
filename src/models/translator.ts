@@ -7,7 +7,6 @@ export const translator: Translator = {
 	"menu": "menu",
 	"img": "immagine",
 	"description": "descrizione",
-	"limit": "limite",
 	"Carte": "Alla carta",
 	"Lunch": "Pranzo",
 	"Dinner": "Cena",

@@ -110,8 +110,6 @@
 							<option value={menu}>{menu}</option>
 						{/each}
 					</Select>
-				{:else if key == 'limit'}
-					<Input name={key} type="number" {value} min="0" />
 				{:else}
 					<Input name={key} type="text" {value} disabled={key == 'id'}/>	
 				{/if}

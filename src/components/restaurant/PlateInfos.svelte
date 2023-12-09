@@ -14,6 +14,5 @@
 		<p><b class="dark:text-white text-gray-700">Ingredienti</b><br> {plate.ingredients}</p><br>
 		<p><b class="dark:text-white text-gray-700">Prezzo</b><br> {plate.price + "€"}</p><br>
 		<p><b class="dark:text-white text-gray-700">Menu</b><br> {plate.menu}</p><br>
-		<p><b class="dark:text-white text-gray-700">Limite</b><br> {plate.limit}</p><br>
 	</div>
 </Modal>

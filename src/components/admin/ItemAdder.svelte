@@ -117,8 +117,6 @@
 								<option value={menu}>{menu}</option>
 							{/each}
 						</Select>
-					{:else if key == 'limit'}
-						<Input name={key} type="number" min="0" step="1" />
 					{:else}
 						<Input name={key} type="text"/>	
 					{/if}

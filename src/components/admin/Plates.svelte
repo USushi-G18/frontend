@@ -17,8 +17,7 @@
 				"category": "sashimi",
 				"menu": Menu.Dinner,
 				"img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqJzzxf3axXBhXtcmR_uPmaK_miJ94OCh6LA&usqp=CAU",
-				"description": "Sashimi misto di tonno, salmone e orata",
-				"limit": 1
+				"description": "Sashimi misto di tonno, salmone e orata"
 			},
 			{
 				"id": 2,

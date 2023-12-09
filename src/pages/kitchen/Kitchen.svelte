@@ -16,8 +16,7 @@
 				category: "sashimi",
 				menu: Menu.Dinner,
 				img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqJzzxf3axXBhXtcmR_uPmaK_miJ94OCh6LA&usqp=CAU",
-				description: "ciao",
-				limit: 1
+				description: "ciao"
 			},
 			quantity: 1
 		},
@@ -34,8 +33,7 @@
 				category: "sashimi",
 				menu: Menu.Dinner,
 				img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqJzzxf3axXBhXtcmR_uPmaK_miJ94OCh6LA&usqp=CAU",
-				description: "ciao",
-				limit: 1
+				description: "ciao"
 			},
 			quantity: 1
 		},
@@ -52,8 +50,7 @@
 				category: "sashimi",
 				menu: Menu.Dinner,
 				img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqJzzxf3axXBhXtcmR_uPmaK_miJ94OCh6LA&usqp=CAU",
-				description: "ciao",
-				limit: 1
+				description: "ciao"
 			},
 			quantity: 5
 		},
@@ -70,8 +67,7 @@
 				category: "sashimi",
 				menu: Menu.Dinner,
 				img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqJzzxf3axXBhXtcmR_uPmaK_miJ94OCh6LA&usqp=CAU",
-				description: "ciao",
-				limit: 1
+				description: "ciao"
 			},
 			quantity: 1
 		},
