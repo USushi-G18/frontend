@@ -4,7 +4,7 @@
 	import { cart, hasAlreadyOrdered } from '../../../store/cart';
 	import { selectedMenu } from '../../../store/selected_menu';
 	import OrdersList from '../../../components/restaurant/cart/OrdersList.svelte';
-    import Summary from '../../../components/restaurant/cart/Summary.svelte';
+    import { Button } from 'flowbite-svelte';
 	
 	$cart.sort((a: OrderedPlate, b: OrderedPlate) => a.plate.name.localeCompare(b.plate.name));
 </script>
@@ -15,7 +15,6 @@
 		<div class="pt-16 pb-10 pl-16 pr-16 flex justify-center">
 			<div class="flex flex-col w-[90%] lg:flex-row justify-between">
 				<OrdersList />
-				<Summary />
 			</div>
 		</div>
 	</div>
@@ -25,7 +24,8 @@
 		<div class="flex gap-20">
 			<a href="/restaurant" class="text-xl mt-3 text-primary-500 dark:text-primary-300 hover:underline">Torna al menu</a>
 			{#if !$hasAlreadyOrdered}
-				<a href="/restaurant" class="text-xl mt-3 text-primary-500 dark:text-primary-300 hover:underline" on:click={() => {$selectedMenu = undefined; $cart = []}}>Cambia menu</a>
+				<!-- TODO: logout -->
+				<a href="/restaurant" class="text-xl mt-3 text-primary-500 dark:text-primary-300 hover:underline" on:click={() => {$selectedMenu = undefined; $cart = []}}>Chiudi il conto ed Esci</a>
 			{/if}
 		</div>
 	</div>
