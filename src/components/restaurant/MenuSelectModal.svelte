@@ -2,6 +2,7 @@
 	import { Modal, Label, DarkMode } from "flowbite-svelte";
 	import { Menu } from "../../models/menu";
 	import { selectedMenu } from "../../store/selected_menu";
+    import Logout from "../Logout.svelte";
 
 	export let open: boolean
 </script>
@@ -9,7 +10,10 @@
 <Modal dismissable={false} autoclose={false} bind:open size="sm" backdropClass="fixed inset-0 z-40 bg-gray-900 bg-opacity-50 dark:bg-opacity-80">
 	<div class="flex justify-between">
 		<h1 class="text-2xl font-bold text-center">Seleziona un menu</h1>
-		<DarkMode onclick="this.blur();" class="relative right-1"/>
+		<div class="flex flex-row gap-1">
+			<DarkMode onclick="this.blur();"/>
+			<Logout/>
+		</div>
 	</div>
 	<div class="flex flex-row items-start justify-center w-full gap-7">
 		<div class="flex flex-col items-start justify-center w-full border-primary-400 border-y-2 p-4 rounded-lg">

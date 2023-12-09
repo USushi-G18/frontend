@@ -2,6 +2,7 @@
 	import { Navbar, NavBrand, DarkMode, Tooltip } from "flowbite-svelte";
 	import { ArrowRightFromBracketSolid } from "flowbite-svelte-icons";
     import Logo from "./icons/Logo.svelte";
+    import Logout from "./Logout.svelte";
 
 	export let logout = false;
 </script>
@@ -15,10 +16,7 @@
 		<slot name="right"/>
 		<DarkMode onclick="this.blur();" />
 		{#if logout}
-			<button class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
-				<ArrowRightFromBracketSolid onclick="this.blur();" tabindex="-1"/>
-			</button>
-			<Tooltip placement="bottom-end">Logout</Tooltip>
+			<Logout/>
 		{/if}
 	</div>
 </Navbar>
