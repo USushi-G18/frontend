@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { OrderedPlate } from '../../../models/ordered_plate';
 
-	import { cart } from '../../../store/cart';
+	import { cart, hasAlreadyOrdered } from '../../../store/cart';
 	import { selectedMenu } from '../../../store/selected_menu';
 	import OrdersList from '../../../components/restaurant/cart/OrdersList.svelte';
     import Summary from '../../../components/restaurant/cart/Summary.svelte';
@@ -24,7 +24,9 @@
 		<h1 class="text-5xl font-bold text-primary-700 dark:text-primary-400">Il carrello è vuoto!!</h1>
 		<div class="flex gap-20">
 			<a href="/restaurant" class="text-xl mt-3 text-primary-500 dark:text-primary-300 hover:underline">Torna al menu</a>
-			<a href="/restaurant" class="text-xl mt-3 text-primary-500 dark:text-primary-300 hover:underline" on:click={() => {$selectedMenu = undefined; $cart = []}}>Cambia menu</a>
+			{#if $hasAlreadyOrdered}
+				<a href="/restaurant" class="text-xl mt-3 text-primary-500 dark:text-primary-300 hover:underline" on:click={() => {$selectedMenu = undefined; $cart = []}}>Cambia menu</a>
+			{/if}
 		</div>
 	</div>
 {/if}
