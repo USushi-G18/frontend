@@ -34,6 +34,7 @@
 				<P class="text-lg">€ {total.toFixed(2)}</P>
 			</div>
 		</div>
+		<!--TODO: al click del pulsante settare $hasAlreadyOrdered in "../../../store/cart" a true (Toglie l'opzione di cambiare menu dopo un ordine)-->
 		<Button class="w-[75%] mt-10" size="md" on:click={() => console.error("INVIA L'ORDINE")}>Invia Ordine</Button>
 	</div>
 	<Button class="w-[15%] bottom-10 right-10 absolute" size="lg" href="/restaurant" on:click={() => {$selectedMenu = undefined; $cart = []}}>Chiudi Conto ed Esci</Button>
