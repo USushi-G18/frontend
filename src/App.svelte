@@ -30,7 +30,7 @@
     <Route path="/restaurant/*" primary={false}>
         <Route path="/" primary={false}>
             <MainView>
-                <SiteNavbar slot="navbar">
+                <SiteNavbar slot="navbar" logout>
                     <div slot="right" class="flex space-x-1">
                         <a href="/restaurant/cart" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
                             <CartOutline onclick="this.blur();" tabindex="-1"/>
@@ -42,7 +42,7 @@
         </Route>
         <Route path="/cart" primary={false}>
             <MainView>
-                <SiteNavbar slot="navbar">
+                <SiteNavbar slot="navbar" logout>
                     <div slot="right" class="flex space-x-1">
                         <a href="/restaurant" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
                             <MenuIcon/>
