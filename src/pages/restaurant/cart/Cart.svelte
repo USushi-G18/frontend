@@ -24,7 +24,7 @@
 		<h1 class="text-5xl font-bold text-primary-700 dark:text-primary-400">Il carrello è vuoto!!</h1>
 		<div class="flex gap-20">
 			<a href="/restaurant" class="text-xl mt-3 text-primary-500 dark:text-primary-300 hover:underline">Torna al menu</a>
-			{#if $hasAlreadyOrdered}
+			{#if !$hasAlreadyOrdered}
 				<a href="/restaurant" class="text-xl mt-3 text-primary-500 dark:text-primary-300 hover:underline" on:click={() => {$selectedMenu = undefined; $cart = []}}>Cambia menu</a>
 			{/if}
 		</div>
