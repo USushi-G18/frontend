@@ -5,6 +5,7 @@ import type { OrderedPlate } from '../models/ordered_plate';
 const initialCart: OrderedPlate[] = JSON.parse(localStorage.getItem('cart') || '[]');
 
 export const cart = writable(initialCart);
+export const hasAlreadyOrdered = writable(false);
 
 // Ogni volta che il carrello cambia, aggiorna localStorage
 cart.subscribe(value => {
