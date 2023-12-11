@@ -9,6 +9,7 @@
 <Modal bind:open={openModal} autoclose outsideclose title={plate.name}>
 	<div class="">
 		<Img class="rounded-lg w-72 float-right aspect-video" src={plate.img} alt="{plate.name}"/>
+		<p><b class="dark:text-white text-gray-700">Pezzi</b><br> {"\n\n" + plate.pieces}</p><br>
 		<p><b class="dark:text-white text-gray-700">Descrizione</b><br> {"\n\n" + plate.description}</p><br>
 		<p><b class="dark:text-white text-gray-700">Categoria</b><br> {plate.category}</p><br>
 		<p><b class="dark:text-white text-gray-700">Ingredienti</b><br> {plate.ingredients}</p><br>
