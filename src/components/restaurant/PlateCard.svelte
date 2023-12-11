@@ -33,7 +33,7 @@
             <div class="flex justify-between items-center">
                 <div class="text-left">
                     <h5 class="max-w-lg whitespace-nowrap overflow-hidden text-ellipsis font-semibold tracking-tight text-gray-900 dark:text-white">{plate.name}</h5>
-                    <P size="xs">{plate.ingredients}</P>
+                    <P size="xs">{plate.pieces + " pezzi"}</P>
                 </div>
             </div>
         </div>
