@@ -20,7 +20,8 @@
 				"category": "sashimi",
 				"menu": Menu.Dinner,
 				"img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqJzzxf3axXBhXtcmR_uPmaK_miJ94OCh6LA&usqp=CAU",
-				"description": "Sashimi misto di tonno, salmone e orata"
+				"description": "Sashimi misto di tonno, salmone e orata",
+				"pieces": 6
 			},
 			{
 				"id": 2,
@@ -30,7 +31,8 @@
 				"category": "uramaki",
 				"menu": Menu.Lunch,
 				"img": "https://images.fidhouse.com/fidelitynews/wp-content/uploads/sites/6/2020/01/1580315600_842a0278b5b34385f186c24c69e5c3cb369c2b20-1580290176.jpg?width=1280&height=720&quality=90",
-				"description": "Uramaki California con granchio, avocado e maionese"
+				"description": "Uramaki California con granchio, avocado e maionese",
+				"pieces": 6
 			},
 			{
 				"id": 3,
@@ -40,7 +42,8 @@
 				"category": "temaki",
 				"menu": Menu.Carte,
 				"img": "https://www.melarossa.it/wp-content/uploads/2021/10/temaki.jpg",
-				"description": "Temaki Salmone con riso, alga nori e salmone"
+				"description": "Temaki Salmone con riso, alga nori e salmone",
+				"pieces": 6
 			},
 			{
 				"id": 4,
@@ -50,7 +53,8 @@
 				"category": "nigiri",
 				"menu": Menu.Carte,
 				"img": "https://primochef.it/wp-content/uploads/2021/10/SH_nigiri_salmone.jpg",
-				"description": "Nigiri Salmone con riso e salmone"
+				"description": "Nigiri Salmone con riso e salmone",
+				"pieces": 6
 			},
 			{
 				"id": 5,
@@ -60,7 +64,8 @@
 				"category": "hosomaki",
 				"menu": Menu.Lunch,
 				"img": "https://kingu.it/wp-content/uploads/2022/09/Hosomaki-avocado.jpeg",
-				"description": "Hosomaki Avocado con riso, alga nori e avocado"
+				"description": "Hosomaki Avocado con riso, alga nori e avocado",
+				"pieces": 6
 			},
 			{
 				"id": 6,
@@ -70,7 +75,8 @@
 				"category": "futomaki",
 				"menu": Menu.Dinner,
 				"img": "https://media.istockphoto.com/id/157610246/it/foto/tonno-roll.jpg?s=612x612&w=0&k=20&c=EWF_S3phiDXBFQbAEnKKZ-pd65_54EjctYTWeiyU0uY=",
-				"description": "Futomaki Tonno con riso, alga nori e tonno"
+				"description": "Futomaki Tonno con riso, alga nori e tonno",
+				"pieces": 6
 			},
 			{
 				"id": 7,
@@ -80,7 +86,8 @@
 				"category": "uramaki",
 				"menu": Menu.Lunch,
 				"img": "https://www.sosushiandsound.it/wp-content/uploads/2023/04/uramaki-ebiten-2.jpg",
-				"description": "Uramaki Gamberi con gamberi, avocado e maionese"
+				"description": "Uramaki Gamberi con gamberi, avocado e maionese",
+				"pieces": 6
 			},
 			{
 				"id": 8,
@@ -90,7 +97,8 @@
 				"category": "nigiri",
 				"menu": Menu.Carte,
 				"img": "https://www.sosushiandsound.it/wp-content/uploads/2023/04/nigiri-gambero-ebi-1.jpg",
-				"description": "Nigiri Gamberi con riso e gamberi"
+				"description": "Nigiri Gamberi con riso e gamberi",
+				"pieces": 6
 			},
 			{
 				"id": 9,
@@ -100,7 +108,8 @@
 				"category": "gunkan",
 				"menu": Menu.Dinner,
 				"img": "https://www.ristorantedong.it/wp-content/uploads/Ristorante-Dong-Menu-WEB-175.jpg",
-				"description": "Gunkan Salmone con riso, alga nori e salmone"
+				"description": "Gunkan Salmone con riso, alga nori e salmone",
+				"pieces": 6
 			},
 			{
 				"id": 10,
@@ -110,7 +119,8 @@
 				"category": "futomaki",
 				"menu": Menu.Lunch,
 				"img": "https://cdn.cook.stbm.it/thumbnails/ricette/144/144478/hd750x421.jpg",
-				"description": "Futomaki Salmone con riso, alga nori e salmone"
+				"description": "Futomaki Salmone con riso, alga nori e salmone",
+				"pieces": 6
 			},
 			{
 				"id": 11,
@@ -120,7 +130,8 @@
 				"category": "uramaki",
 				"menu": Menu.Lunch,
 				"img": "https://www.agrodolce.it/app/uploads/2022/03/uramaki-con-tonno.jpg",
-				"description": "Uramaki Tonno con tonno, riso e alga nori"
+				"description": "Uramaki Tonno con tonno, riso e alga nori",
+				"pieces": 6
 			},
 			{
 				"id": 12,
@@ -130,7 +141,8 @@
 				"category": "temaki",
 				"menu": Menu.Carte,
 				"img": "https://kingu.it/wp-content/uploads/2022/09/philadelphia-temaki-cono-di-alga-con-riso-gamberi-cotti-e-avocado.jpeg",
-				"description": "Temaki Gamberi con riso, alga nori e gamberi"
+				"description": "Temaki Gamberi con riso, alga nori e gamberi",
+				"pieces": 6
 			}
 		]
 	} 
