@@ -3,6 +3,7 @@
 	import { Modal, Label, Input, Fileupload, Button, Img, Select } from "flowbite-svelte";
     import { translator } from "../../models/translator";
     import type { Category } from "../../models/category";
+    import Ingredients from "./Ingredients.svelte";
 
 	export let openModal = false;
 	export let item: { [key: string]: any };
@@ -65,6 +66,11 @@
 			}
 		];
 
+	let ingredients: string[] = [
+		"Riso",
+		"Tonno"
+	];
+
 	const handleFileUpload = (event: Event) => {
 		if(event.target){
 			const target = event.target as HTMLInputElement;
@@ -103,7 +109,9 @@
 				{:else if key == 'description'}
 					<Input name={key} type="text" {value} />
 				{:else if key == 'ingredients'}
-					<Input name={key} type="text" {value} />
+					<Ingredients {key} ingredients={value}/>
+				{:else if key == 'description'}
+					<Input name={key} type="text"/>
 				{:else if key == 'menu'}
 					<Select name="menu" {value}>
 						{#each Object.values(Menu).filter(value => isNaN(Number(value))) as menu}
