@@ -26,7 +26,8 @@
 				"ingredients": ["granchio", "avocado", "maionese"],
 				"category": "uramaki",
 				"menu": Menu.Lunch,
-				"img": "https://images.fidhouse.com/fidelitynews/wp-content/uploads/sites/6/2020/01/1580315600_842a0278b5b34385f186c24c69e5c3cb369c2b20-1580290176.jpg?width=1280&height=720&quality=90"
+				"img": "https://images.fidhouse.com/fidelitynews/wp-content/uploads/sites/6/2020/01/1580315600_842a0278b5b34385f186c24c69e5c3cb369c2b20-1580290176.jpg?width=1280&height=720&quality=90",
+				"description": "Uramaki California con granchio, avocado e maionese"
 			},
 			{
 				"id": 3,
@@ -35,7 +36,8 @@
 				"ingredients": ["riso", "alga nori", "salmone"],
 				"category": "temaki",
 				"menu": Menu.Carte,
-				"img": "https://www.melarossa.it/wp-content/uploads/2021/10/temaki.jpg"
+				"img": "https://www.melarossa.it/wp-content/uploads/2021/10/temaki.jpg",
+				"description": "Temaki Salmone con riso, alga nori e salmone"
 			},
 			{
 				"id": 4,
@@ -44,7 +46,8 @@
 				"ingredients": ["riso", "salmone"],
 				"category": "nigiri",
 				"menu": Menu.Carte,
-				"img": "https://primochef.it/wp-content/uploads/2021/10/SH_nigiri_salmone.jpg"
+				"img": "https://primochef.it/wp-content/uploads/2021/10/SH_nigiri_salmone.jpg",
+				"description": "Nigiri Salmone con riso e salmone"
 			},
 			{
 				"id": 5,
@@ -53,7 +56,8 @@
 				"ingredients": ["riso", "alga nori", "avocado"],
 				"category": "hosomaki",
 				"menu": Menu.Lunch,
-				"img": "https://kingu.it/wp-content/uploads/2022/09/Hosomaki-avocado.jpeg"
+				"img": "https://kingu.it/wp-content/uploads/2022/09/Hosomaki-avocado.jpeg",
+				"description": "Hosomaki Avocado con riso, alga nori e avocado"
 			},
 			{
 				"id": 6,
@@ -62,7 +66,8 @@
 				"ingredients": ["riso", "alga nori", "tonno"],
 				"category": "futomaki",
 				"menu": Menu.Dinner,
-				"img": "https://media.istockphoto.com/id/157610246/it/foto/tonno-roll.jpg?s=612x612&w=0&k=20&c=EWF_S3phiDXBFQbAEnKKZ-pd65_54EjctYTWeiyU0uY="
+				"img": "https://media.istockphoto.com/id/157610246/it/foto/tonno-roll.jpg?s=612x612&w=0&k=20&c=EWF_S3phiDXBFQbAEnKKZ-pd65_54EjctYTWeiyU0uY=",
+				"description": "Futomaki Tonno con riso, alga nori e tonno"
 			},
 			{
 				"id": 7,
@@ -71,7 +76,8 @@
 				"ingredients": ["gamberi", "avocado", "maionese"],
 				"category": "uramaki",
 				"menu": Menu.Lunch,
-				"img": "https://www.sosushiandsound.it/wp-content/uploads/2023/04/uramaki-ebiten-2.jpg"
+				"img": "https://www.sosushiandsound.it/wp-content/uploads/2023/04/uramaki-ebiten-2.jpg",
+				"description": "Uramaki Gamberi con gamberi, avocado e maionese"
 			},
 			{
 				"id": 8,
@@ -80,7 +86,8 @@
 				"ingredients": ["riso", "gamberi"],
 				"category": "nigiri",
 				"menu": Menu.Carte,
-				"img": "https://www.sosushiandsound.it/wp-content/uploads/2023/04/nigiri-gambero-ebi-1.jpg"
+				"img": "https://www.sosushiandsound.it/wp-content/uploads/2023/04/nigiri-gambero-ebi-1.jpg",
+				"description": "Nigiri Gamberi con riso e gamberi"
 			},
 			{
 				"id": 9,
@@ -89,7 +96,8 @@
 				"ingredients": ["riso", "alga nori", "salmone"],
 				"category": "gunkan",
 				"menu": Menu.Dinner,
-				"img": "https://www.ristorantedong.it/wp-content/uploads/Ristorante-Dong-Menu-WEB-175.jpg"
+				"img": "https://www.ristorantedong.it/wp-content/uploads/Ristorante-Dong-Menu-WEB-175.jpg",
+				"description": "Gunkan Salmone con riso, alga nori e salmone"
 			},
 			{
 				"id": 10,
@@ -98,7 +106,8 @@
 				"ingredients": ["riso", "alga nori", "salmone"],
 				"category": "futomaki",
 				"menu": Menu.Lunch,
-				"img": "https://cdn.cook.stbm.it/thumbnails/ricette/144/144478/hd750x421.jpg"
+				"img": "https://cdn.cook.stbm.it/thumbnails/ricette/144/144478/hd750x421.jpg",
+				"description": "Futomaki Salmone con riso, alga nori e salmone"
 			},
 			{
 				"id": 11,
@@ -107,7 +116,8 @@
 				"ingredients": ["tonno", "riso", "alga nori"],
 				"category": "uramaki",
 				"menu": Menu.Lunch,
-				"img": "https://www.agrodolce.it/app/uploads/2022/03/uramaki-con-tonno.jpg"
+				"img": "https://www.agrodolce.it/app/uploads/2022/03/uramaki-con-tonno.jpg",
+				"description": "Uramaki Tonno con tonno, riso e alga nori"
 			},
 			{
 				"id": 12,
@@ -116,7 +126,8 @@
 				"ingredients": ["riso", "alga nori", "gamberi"],
 				"category": "temaki",
 				"menu": Menu.Carte,
-				"img": "https://kingu.it/wp-content/uploads/2022/09/philadelphia-temaki-cono-di-alga-con-riso-gamberi-cotti-e-avocado.jpeg"
+				"img": "https://kingu.it/wp-content/uploads/2022/09/philadelphia-temaki-cono-di-alga-con-riso-gamberi-cotti-e-avocado.jpeg",
+				"description": "Temaki Gamberi con riso, alga nori e gamberi"
 			}
 		]
 	}
