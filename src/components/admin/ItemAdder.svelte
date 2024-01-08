@@ -4,6 +4,7 @@
 	import { PlusSolid } from "flowbite-svelte-icons";
     import { translator } from "../../models/translator";
     import type { Category } from "../../models/category";
+    import Ingredients from "./Ingredients.svelte";
 
 	export let openModal = false;
 	export let keys: any[];
@@ -110,7 +111,7 @@
 					{:else if key == 'description'}
 						<Input name={key} type="text"/>
 					{:else if key == 'ingredients'}
-						<Input name={key} type="text"/>
+						<Ingredients {key}/>
 					{:else if key == 'menu'}
 						<Select name="menu">
 							{#each Object.values(Menu).filter(value => isNaN(Number(value))) as menu}
