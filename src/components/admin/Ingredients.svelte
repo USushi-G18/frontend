@@ -25,14 +25,14 @@
 		"aceto"
 	]
 
-	function handleClick(ingredient: string) {
-		if (ingredients.includes(ingredient)) {
-			ingredients = ingredients.filter((ing) => ing !== ingredient);
+	function handleChange(event: CustomEvent<{ checked: boolean; content: string }>) {
+        if(event.detail.checked) {
+			ingredients.push(event.detail.content);
 		} else {
-			ingredients.push(ingredient);
-			ingredients = [...ingredients];
+			ingredients.splice(ingredients.indexOf(event.detail.content), 1);
 		}
-	}
+		ingredients = [...ingredients];
+    }
 </script>
 
 <Input name={key} type="text" bind:value={inputContent} disabled defaultClass='block w-full cursor-pointer disabled:opacity-80'>
@@ -41,7 +41,7 @@
 <Popover placement='bottom' class="w-[70%] text-sm font-light" trigger="click">
 	<div class="flex flex-wrap gap-x-7 gap-y-3">
 		{#each allIngredients as ingredient}
-			<Ingredient on:click={() => handleClick(ingredient)} content={ingredient} checked={ingredients.includes(ingredient)} />
+			<Ingredient on:change={handleChange} content={ingredient} checked={ingredients.includes(ingredient)} />
 		{/each}
 	</div>
 </Popover>
