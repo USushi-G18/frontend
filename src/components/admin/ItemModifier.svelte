@@ -66,11 +66,6 @@
 			}
 		];
 
-	let ingredients: string[] = [
-		"Riso",
-		"Tonno"
-	];
-
 	const handleFileUpload = (event: Event) => {
 		if(event.target){
 			const target = event.target as HTMLInputElement;
