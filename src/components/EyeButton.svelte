@@ -1,11 +1,10 @@
 <script lang="ts">
-	export let visible = false;
-	import { EyeOutline, EyeSlashOutline } from 'flowbite-svelte-icons';
-
-	export let tabindex = 0;
+  export let visible = false;
+  import { EyeOutline, EyeSlashOutline } from "flowbite-svelte-icons";
 </script>
+
 {#if visible}
-	<EyeOutline {tabindex}/>
+  <EyeOutline />
 {:else}
-	<EyeSlashOutline {tabindex}/>
+  <EyeSlashOutline />
 {/if}

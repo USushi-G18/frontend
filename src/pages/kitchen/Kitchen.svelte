@@ -1,105 +1,33 @@
 <script lang="ts">
-    import OrderCard from "../../components/kitchen/OrderCard.svelte";
-	import type { Order } from "../../models/order";
-    import { StateOfOrder } from "../../models/orderstate";
-    import { Menu } from "../../models/menu";
-    
-	let ord: { "orders": Order[] } = { "orders": [ {
-		table: 1,
-		timestamp: new Date(),
-		ordered_plate: {
-			plate: {
-				id: 1,
-				name: "Sashimi misto",
-				price: "18.50",
-				ingredients: ["tonno", "salmone", "orata"],
-				category: "sashimi",
-				menu: Menu.Dinner,
-				img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqJzzxf3axXBhXtcmR_uPmaK_miJ94OCh6LA&usqp=CAU",
-				description: "ciao"
-			},
-			quantity: 1
-		},
-		status: StateOfOrder.Ready
-	},{
-		table: 3,
-		timestamp: new Date(),
-		ordered_plate: {
-			plate: {
-				id: 1,
-				name: "Sashimi misto",
-				price: "18.50",
-				ingredients: ["tonno", "salmone", "orata"],
-				category: "sashimi",
-				menu: Menu.Dinner,
-				img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqJzzxf3axXBhXtcmR_uPmaK_miJ94OCh6LA&usqp=CAU",
-				description: "ciao"
-			},
-			quantity: 1
-		},
-		status: StateOfOrder.Received
-	},{
-		table: 2,
-		timestamp: new Date(),
-		ordered_plate: {
-			plate: {
-				id: 1,
-				name: "Sashimi misto",
-				price: "18.50",
-				ingredients: ["tonno", "salmone", "orata"],
-				category: "sashimi",
-				menu: Menu.Dinner,
-				img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqJzzxf3axXBhXtcmR_uPmaK_miJ94OCh6LA&usqp=CAU",
-				description: "ciao"
-			},
-			quantity: 5
-		},
-		status: StateOfOrder.Processing
-	},{
-		table: 4,
-		timestamp: new Date(),
-		ordered_plate: {
-			plate: {
-				id: 1,
-				name: "Sashimi misto",
-				price: "18.50",
-				ingredients: ["tonno", "salmone", "orata"],
-				category: "sashimi",
-				menu: Menu.Dinner,
-				img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqJzzxf3axXBhXtcmR_uPmaK_miJ94OCh6LA&usqp=CAU",
-				description: "ciao"
-			},
-			quantity: 1
-		},
-		status: StateOfOrder.Served
-	} ]};
+  import CommandCard from "../../components/kitchen/CommandCard.svelte";
+  import { CommandStatus, type Command } from "../../models/command";
 
-
-	let orders = ord.orders.reduce((acc, order) => {
-		const table = order.table;
-		
-		if(!acc.has(table))
-			acc.set(table, [])
-		
-		if(order.status != StateOfOrder.Served)
-			acc.get(table)?.push(order);
-		
-		return acc
-	}, new Map<number, Order[]>)
+  let orders: { table: number; commands: Command[] }[] = [
+    {
+      table: 1,
+      commands: [
+        {
+          session_id: 1,
+          plate_id: 1,
+          at: new Date(),
+          quantity: 2,
+          status: CommandStatus.Delivered,
+        },
+      ],
+    },
+  ];
 </script>
 
 <div class="orders items-stretch w-full h-full m-7 self-start">
-	{#each Array.from(orders.keys()).sort() as table}
-		{#if orders.get(table)?.length??0 > 0}
-			<OrderCard table={table} orders={orders.get(table)} />
-		{/if}
-	{/each}
+  {#each orders as order}
+    <CommandCard table={order.table} commands={order.commands}></CommandCard>
+  {/each}
 </div>
 
 <style>
-	.orders {
-		display: grid;
-		grid-gap: 1.25rem;
-		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-	}
+  .orders {
+    display: grid;
+    grid-gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
 </style>
