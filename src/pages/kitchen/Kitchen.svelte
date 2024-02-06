@@ -7,8 +7,8 @@
       table: 1,
       commands: [
         {
-          session_id: 1,
-          plate_id: 1,
+          sessionID: 1,
+          plateID: 1,
           at: new Date(),
           quantity: 2,
           status: CommandStatus.Delivered,

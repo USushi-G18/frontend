@@ -7,7 +7,7 @@
 </script>
 
 <Navbar class="mx-5 z-40" fluid={true}>
-  <NavBrand class="my-2 mx-5">
+  <NavBrand class="my-2 mx-5" href="/">
     <Logo />
     <span
       class="self-center whitespace-nowrap text-[20pt] font-semibold dark:text-white"

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Modal, Label, DarkMode } from "flowbite-svelte";
-  import { Menu } from "../../models/plate";
+  import { Menu } from "../../models/menu";
   import { selectedMenu } from "../../store/selected_menu";
   import Logout from "../Logout.svelte";
 
@@ -17,7 +17,7 @@
   <div class="flex justify-between">
     <h1 class="text-2xl font-bold text-center">Seleziona un menu</h1>
     <div class="flex flex-row gap-1">
-      <DarkMode onclick="this.blur();" />
+      <DarkMode />
       <Logout />
     </div>
   </div>

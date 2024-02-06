@@ -1,17 +1,14 @@
 <script lang="ts">
-  import type { Plate } from "../../models/plate";
-
   import PlateCard from "./PlateCard.svelte";
 
-  export let plates: Plate[] | undefined;
+  export let plates: number[];
+  export let category: string;
 </script>
 
 <div class="plates my-7 w-full items-center justify-center">
-  {#if plates}
-    {#each plates as plate}
-      <PlateCard {plate} />
-    {/each}
-  {/if}
+  {#each plates as plateID}
+    <PlateCard {plateID} {category} />
+  {/each}
 </div>
 
 <style>

@@ -2,7 +2,7 @@
   import { TabItem, Tabs } from "flowbite-svelte";
   import LoginContent from "../../components/login/LoginContent.svelte";
   import LoginUsers from "../../components/login/LoginUsers.svelte";
-  import { SushiUserType } from "../../models/sushi-user";
+  import { SushiUserType } from "../../models/sushi_user";
 </script>
 
 <form class="dark:bg-gray-900 bg-gray-300 rounded-lg w-[80%] sm:w-auto">

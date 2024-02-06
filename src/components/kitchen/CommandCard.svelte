@@ -21,7 +21,7 @@
           class="max-w-[9rem] text-ellipsis overflow-hidden whitespace-nowrap"
         >
           <span class="text-base font-normal text-gray-700 dark:text-gray-400"
-            >{command.plate_id}</span
+            >{command.plateID}</span
           >
         </td>
         <td class="text-center">

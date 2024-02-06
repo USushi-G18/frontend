@@ -21,7 +21,7 @@
       <Login slot="content" />
     </MainView>
   </Route>
-  <Route path="/admin">
+  <Route path="/admin/*">
     <MainView>
       <SiteNavbar slot="navbar" logout />
       <Admin slot="content" />
@@ -36,7 +36,7 @@
               href="/restaurant/cart"
               class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5"
             >
-              <CartOutline onclick="this.blur();" />
+              <CartOutline />
             </a>
           </div>
         </SiteNavbar>

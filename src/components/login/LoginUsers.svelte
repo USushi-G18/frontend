@@ -4,7 +4,7 @@
     WalletSolid,
     UsersSolid,
   } from "flowbite-svelte-icons";
-  import { SushiUserType } from "../../models/sushi-user";
+  import { SushiUserType } from "../../models/sushi_user";
   export let user: SushiUserType;
 </script>
 

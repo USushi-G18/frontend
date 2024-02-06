@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Card, Heading, Button } from "flowbite-svelte";
   import PwModifier from "./PwModifier.svelte";
-  import type { SushiUserType } from "../../models/sushi-user";
+  import type { SushiUserType } from "../../models/sushi_user";
 
   export let user: SushiUserType;
   let openModal: boolean;

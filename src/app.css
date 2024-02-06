@@ -32,3 +32,20 @@
 .modal div::-webkit-scrollbar-thumb:hover {
 	background: #555;
 }
+
+
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        height: 3px;
+    }
+    .no-scrollbar::-webkit-scrollbar-thumb {
+        background-color: #2a2a2a;
+    }
+    .no-scrollbar::-webkit-scrollbar-track {
+        background-color: #8a8a8a;
+    }
+}
+
+[role="tab"] {
+    width: 8rem;
+}

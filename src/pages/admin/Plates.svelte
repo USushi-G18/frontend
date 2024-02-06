@@ -1,146 +1,131 @@
 <script lang="ts">
+  import { Menu, menuFromName } from "../../models/menu";
+  import DashboardTable from "../../components/dashboard/DashboardTable.svelte";
+  import { menuName } from "../../models/menu";
   import type { Plate } from "../../models/plate";
-  import { Menu } from "../../models/plate";
-
-  import DashboardTable from "../../components/DashboardTable.svelte";
-  import { InfoCircleOutline } from "flowbite-svelte-icons";
+  import { texts } from "./texts";
+  import { ImageOutline, InfoCircleOutline } from "flowbite-svelte-icons";
   import { Tooltip } from "flowbite-svelte";
+  import { useNavigate } from "svelte-navigator";
+  import { categories, plates } from "../../store/models";
+  import {
+    createReq,
+    fetchTable,
+    deleteReq,
+    updateReq,
+  } from "../../utils/fetch";
 
-  // TODO: get plates from DB (used piatti variable for testing)
-  let piatti = {
-    piatti: [
-      {
-        id: 1,
-        name: "Sashimi misto",
-        price: "18.5",
-        ingredients: ["tonno", "salmone", "orata"],
-        category: "sashimi",
-        menu: Menu.Dinner,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqJzzxf3axXBhXtcmR_uPmaK_miJ94OCh6LA&usqp=CAU",
-        description: "Sashimi misto di tonno, salmone e orata",
-      },
-      {
-        id: 2,
-        name: "Uramaki California",
-        price: "12.0",
-        ingredients: ["granchio", "avocado", "maionese"],
-        category: "uramaki",
-        menu: Menu.Lunch,
-        img: "https://images.fidhouse.com/fidelitynews/wp-content/uploads/sites/6/2020/01/1580315600_842a0278b5b34385f186c24c69e5c3cb369c2b20-1580290176.jpg?width=1280&height=720&quality=90",
-      },
-      {
-        id: 3,
-        name: "Temaki Salmone",
-        price: "8.5",
-        ingredients: ["riso", "alga nori", "salmone"],
-        category: "temaki",
-        menu: Menu.Carte,
-        img: "https://www.melarossa.it/wp-content/uploads/2021/10/temaki.jpg",
-      },
-      {
-        id: 4,
-        name: "Nigiri Salmone",
-        price: "3.5",
-        ingredients: ["riso", "salmone"],
-        category: "nigiri",
-        menu: Menu.Carte,
-        img: "https://primochef.it/wp-content/uploads/2021/10/SH_nigiri_salmone.jpg",
-      },
-      {
-        id: 5,
-        name: "Hosomaki Avocado",
-        price: "4.5",
-        ingredients: ["riso", "alga nori", "avocado"],
-        category: "hosomaki",
-        menu: Menu.Lunch,
-        img: "https://kingu.it/wp-content/uploads/2022/09/Hosomaki-avocado.jpeg",
-      },
-      {
-        id: 6,
-        name: "Futomaki Tonno",
-        price: "10.0",
-        ingredients: ["riso", "alga nori", "tonno"],
-        category: "futomaki",
-        menu: Menu.Dinner,
-        img: "https://media.istockphoto.com/id/157610246/it/foto/tonno-roll.jpg?s=612x612&w=0&k=20&c=EWF_S3phiDXBFQbAEnKKZ-pd65_54EjctYTWeiyU0uY=",
-      },
-      {
-        id: 7,
-        name: "Uramaki Gamberi",
-        price: "9.0",
-        ingredients: ["gamberi", "avocado", "maionese"],
-        category: "uramaki",
-        menu: Menu.Lunch,
-        img: "https://www.sosushiandsound.it/wp-content/uploads/2023/04/uramaki-ebiten-2.jpg",
-      },
-      {
-        id: 8,
-        name: "Nigiri Gamberi",
-        price: "4.0",
-        ingredients: ["riso", "gamberi"],
-        category: "nigiri",
-        menu: Menu.Carte,
-        img: "https://www.sosushiandsound.it/wp-content/uploads/2023/04/nigiri-gambero-ebi-1.jpg",
-      },
-      {
-        id: 9,
-        name: "Gunkan Salmone",
-        price: "4.5",
-        ingredients: ["riso", "alga nori", "salmone"],
-        category: "gunkan",
-        menu: Menu.Dinner,
-        img: "https://www.ristorantedong.it/wp-content/uploads/Ristorante-Dong-Menu-WEB-175.jpg",
-      },
-      {
-        id: 10,
-        name: "Futomaki Salmone",
-        price: "9.5",
-        ingredients: ["riso", "alga nori", "salmone"],
-        category: "futomaki",
-        menu: Menu.Lunch,
-        img: "https://cdn.cook.stbm.it/thumbnails/ricette/144/144478/hd750x421.jpg",
-      },
-      {
-        id: 11,
-        name: "Uramaki Tonno",
-        price: "11.0",
-        ingredients: ["tonno", "riso", "alga nori"],
-        category: "uramaki",
-        menu: Menu.Lunch,
-        img: "https://www.agrodolce.it/app/uploads/2022/03/uramaki-con-tonno.jpg",
-      },
-      {
-        id: 12,
-        name: "Temaki Gamberi",
-        price: "9.5",
-        ingredients: ["riso", "alga nori", "gamberi"],
-        category: "temaki",
-        menu: Menu.Carte,
-        img: "https://kingu.it/wp-content/uploads/2022/09/philadelphia-temaki-cono-di-alga-con-riso-gamberi-cotti-e-avocado.jpeg",
-      },
-    ],
+  const navigate = useNavigate();
+
+  $: items = $plates;
+
+  let columns: ColumnDef[];
+  $: columns = [
+    {
+      field: "name",
+      name: "Nome",
+      type: "string",
+      editable: true,
+    },
+    {
+      field: "price",
+      name: "Prezzo",
+      type: "number",
+      valueSetter: (v) => (v === undefined ? undefined : v.toString()),
+      editable: true,
+    },
+    {
+      field: "categoryID",
+      name: "Categoria",
+      type: "select",
+      selectOptions: $categories.map((c) => c.name),
+      valueGetter: (v) => $categories.find((c) => c.id === v)?.name,
+      valueSetter: (v) => $categories.find((c) => c.name === v)?.id,
+      editable: true,
+    },
+    {
+      field: "menu",
+      name: "Menu",
+      type: "select",
+      selectOptions: Object.keys(Menu).map((m) => menuName(m as Menu)),
+      valueGetter: menuName,
+      valueSetter: menuFromName,
+      editable: true,
+    },
+    {
+      field: "description",
+      name: "Descrizione",
+      type: "string",
+      editable: true,
+    },
+    {
+      field: "orderLimit",
+      name: "Limite",
+      type: "number",
+      editable: true,
+    },
+    {
+      field: "pieces",
+      name: "Pezzi",
+      type: "number",
+      editable: true,
+    },
+  ];
+
+  const handleCreate = async (event: CustomEvent) => {
+    let res = await createReq("plate", event.detail);
+    if (res.status !== 201) {
+      let body = await res.json();
+      console.error(body);
+      return;
+    }
+    $plates = await fetchTable("plate");
   };
 
-  let items = piatti["piatti"] as Plate[];
+  const handleUpdate = async (event: CustomEvent) => {
+    let res = await updateReq(`plate/${event.detail.id}`, event.detail);
+    if (res.status !== 200) {
+      let body = await res.json();
+      console.error(body);
+      return;
+    }
+    $plates = await fetchTable("plate");
+  };
 
-  let fields = ["id", "name", "price", "category", "menu"];
+  const handleDelete = async (event: CustomEvent) => {
+    let res = await deleteReq(`plate/${event.detail.id}`);
+    if (res.status !== 200) {
+      let body = await res.json();
+      console.error(body);
+      return;
+    }
+    $plates = await fetchTable("plate");
+  };
+
+  const filter = (item: Plate, key: string) => {
+    return item.name.toLowerCase().indexOf(key.toLowerCase()) !== -1;
+  };
 </script>
 
 <DashboardTable
-  mx="mx-28"
-  title="Piatti"
+  texts={{ ...texts, title: "Piatti" }}
   {items}
-  editBtn
-  delBtn
-  header={fields}
+  {columns}
+  {filter}
+  editable
+  delitable
+  on:create={handleCreate}
+  on:update={handleUpdate}
+  on:delete={handleDelete}
 >
-  <div slot="actions" let:item>
-    <InfoCircleOutline
-      class="text-blue-700	dark:text-white"
-      onclick="this.blur();"
-    />
+  <div class="flex gap-5" slot="actions" let:item>
+    <ImageOutline on:click={() => navigate(`${item.id}/image`)} />
     <Tooltip shadow={false} class="bg-sky-300 dark:bg-sky-200 text-sky-900"
-      >{item.ingredients}</Tooltip
+      >Immagine</Tooltip
     >
+    <InfoCircleOutline on:click={() => navigate(`${item.id}/ingredient`)} />
+    <Tooltip shadow={false} class="bg-sky-300 dark:bg-sky-200 text-sky-900">
+      Ingredienti
+    </Tooltip>
   </div>
 </DashboardTable>

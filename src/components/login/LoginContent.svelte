@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Button, Input, Label } from "flowbite-svelte";
   import PwInput from "../PwInput.svelte";
-  import { SushiUserType } from "../../models/sushi-user";
+  import { SushiUserType } from "../../models/sushi_user";
 
   export let user: SushiUserType;
 </script>

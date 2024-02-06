@@ -1,33 +1,50 @@
 <script lang="ts">
-  import { Listgroup } from "flowbite-svelte";
+  import { Listgroup, ListgroupItem } from "flowbite-svelte";
   import Plates from "./Plates.svelte";
   import Passwords from "./Passwords.svelte";
   import Categories from "./Categories.svelte";
-  let buttons = [
-    { name: "Password", sectionName: "password" },
-    { name: "Categorie", sectionName: "categories" },
-    { name: "Piatti", sectionName: "plates" },
+  import { Route, useNavigate } from "svelte-navigator";
+  import PlateIngredients from "./PlateIngredients.svelte";
+  import PlateImage from "./PlateImage.svelte";
+
+  const navigate = useNavigate();
+
+  let sections = [
+    { name: "Password", path: "password" },
+    { name: "Categorie", path: "category" },
+    { name: "Piatti", path: "plate" },
   ];
 
-  let section = "select";
+  const updatePath = (e: CustomEvent) => {
+    navigate(`${e.detail.path}`);
+  };
 </script>
 
-{#if section === "select"}
+<Route path="/">
   <Listgroup
     active
-    items={buttons}
+    items={sections}
     let:item
     class="w-48"
-    on:click={(e) => (section = e.detail.sectionName)}
+    on:click={updatePath}
   >
-    {#if typeof item === "object" && item !== null && "name" in item}
-      {item.name}
-    {/if}
+    {item.name}
   </Listgroup>
-{:else if section === "password"}
+</Route>
+<Route path="password">
   <Passwords />
-{:else if section === "categories"}
+</Route>
+<Route path="plate/*">
+  <Route path="/">
+    <Plates />
+  </Route>
+  <Route path=":id/ingredient" let:params>
+    <PlateIngredients plateID={parseInt(params.id)} />
+  </Route>
+  <Route path=":id/image" let:params>
+    <PlateImage plateID={parseInt(params.id)} />
+  </Route>
+</Route>
+<Route path="category">
   <Categories />
-{:else if section === "plates"}
-  <Plates />
-{/if}
+</Route>

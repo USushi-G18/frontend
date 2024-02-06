@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Heading } from "flowbite-svelte";
   import PwCard from "../../components/admin/PwCard.svelte";
-  import { SushiUserType } from "../../models/sushi-user";
+  import { SushiUserType } from "../../models/sushi_user";
 </script>
 
 <div class="w-full self-start flex flex-col items-center flex-grow">

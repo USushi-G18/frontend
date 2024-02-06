@@ -1,24 +1,43 @@
 <script lang="ts">
   import { Modal, Label, Helper, Button } from "flowbite-svelte";
   import PwInput from "../PwInput.svelte";
-  import { sushiUserName, type SushiUserType } from "../../models/sushi-user";
-
-  $: color =
-    newPassword === "" || repeatPassword === ""
-      ? <const>"base"
-      : newPassword === repeatPassword
-        ? <const>"green"
-        : <const>"red";
+  import { sushiUserName, type SushiUserType } from "../../models/sushi_user";
+  import { updateReq } from "../../utils/fetch";
 
   export let user: SushiUserType;
   export let openModal: boolean;
+
+  let oldPassword = "";
   let newPassword = "";
   let repeatPassword = "";
-  let currPassword = "";
+
+  let color: "base" | "green" | "red" = "base";
+  $: {
+    if (!newPassword || !repeatPassword) {
+      color = "base";
+    } else if (newPassword === repeatPassword) {
+      color = "green";
+    } else {
+      color = "red";
+    }
+  }
+
+  const handleChangePassword = async () => {
+    let req = await updateReq(
+      `auth/password/${user}`,
+      {
+        newPassword: newPassword,
+        oldPassword: oldPassword,
+      },
+      {
+        method: "POST",
+      }
+    );
+  };
 </script>
 
 <Modal
-  title={"Cambia password di " + sushiUserName(user, { plural: true })}
+  title={"Cambia password di " + sushiUserName(user)}
   bind:open={openModal}
   autoclose
   outsideclose
@@ -28,7 +47,7 @@
   <form class="flex flex-col space-y-6">
     <Label class="space-y-2">
       <span>Vecchia Password</span>
-      <PwInput bind:value={currPassword} />
+      <PwInput bind:value={oldPassword} />
     </Label>
     <Label class="space-y-2">
       <span>Nuova Password</span>
@@ -54,7 +73,7 @@
   <svelte:fragment slot="footer">
     <Button
       disabled={newPassword === "" || newPassword !== repeatPassword}
-      on:click={() => alert("ADD FUNCTION")}>Modifica</Button
+      on:click={handleChangePassword}>Modifica</Button
     >
     <Button color="alternative">Annulla</Button>
   </svelte:fragment>

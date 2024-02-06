@@ -3,10 +3,20 @@
   import { List, Li, Tooltip, Heading, Button } from "flowbite-svelte";
   import { TrashBinSolid } from "flowbite-svelte-icons";
   import AmountSelector from "../AmountSelector.svelte";
-  import type { CartItem } from "../../models/cart";
+  import type { Plate } from "../../models/plate";
+  import { plates } from "../../store/models";
 
-  function removeItemFromCart(item: CartItem) {
-    $cart = $cart.filter((cartItem) => cartItem.plate_id != item.plate_id);
+  const removeItemFromCart = (id: number) => {
+    $cart = $cart.filter((cartItem) => cartItem.plateID != id);
+  };
+
+  let cartPlates: Plate[];
+  $: cartPlates = $cart
+    .map((i) => $plates.find((p) => p.id === i.plateID))
+    .filter((p) => p !== undefined) as Plate[];
+
+  $: {
+    cartPlates.sort((p1, p2) => p1.id - p2.id);
   }
 </script>
 
@@ -20,27 +30,26 @@
       list="none"
       class="w-[28rem] divide-y divide-gray-200 dark:divide-gray-700"
     >
-      {#each $cart as item}
+      {#each cartPlates as item}
         <Li class="py-3 sm:py-4">
           <div class="flex items-center space-x-4 min-w-0">
             <div class="flex-1 min-w-0">
               <p
                 class="text-sm font-medium text-gray-900 truncate dark:text-white"
               >
-                {item.plate_id}
+                {item.name}
               </p>
             </div>
-            <AmountSelector plate_id={item.plate_id} />
+            <AmountSelector plateID={item.id} limit={item.orderLimit} />
             <div
               class="flex-[0.3] pl-7 inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
             >
-              {item.plate_id + "€"}
+              {item.price + "€"}
             </div>
             <div>
               <TrashBinSolid
                 class="text-red-500"
-                onclick="this.blur();"
-                on:click={() => removeItemFromCart(item)}
+                on:click={() => removeItemFromCart(item.id)}
               />
               <Tooltip
                 shadow={false}
@@ -53,7 +62,7 @@
     </List>
   </div>
   <div class="w-[15%] bottom-10 right-10 absolute flex flex-col gap-4">
-    <Button size="lg" on:click={() => console.error("INVIA L'ORDINE")}
+    <Button size="lg" on:click={() => console.log("INVIA L'ORDINE")}
       >Invia Ordine</Button
     >
   </div>
