@@ -2,7 +2,8 @@
   import { onMount } from "svelte";
   import DashboardTable from "../../components/dashboard/DashboardTable.svelte";
   import { ingredients } from "../../store/models";
-  import { createReq, fetchTable, deleteReq } from "../../utils/fetch";
+  import { notification } from "../../store/notification";
+  import { postReq, fetchTable, deleteReq } from "../../utils/fetch";
   import { texts } from "./texts";
 
   export let plateID: number;
@@ -31,10 +32,13 @@
   ];
 
   const handleCreate = async (event: CustomEvent) => {
-    let res = await createReq(`plate/${plateID}/ingredient`, event.detail);
+    let res = await postReq(`plate/${plateID}/ingredient`, event.detail);
     if (res.status !== 201) {
-      let body = await res.json();
-      console.error(body);
+      $notification = {
+        type: "ERROR",
+        message:
+          "Errore nella creazione dell'ingrediente. Potrebbe essere causato da valori duplicati",
+      };
       return;
     }
     fetchPlateIngredients();
@@ -45,8 +49,10 @@
       `plate/${plateID}/ingredient/${event.detail.ingredientID}`
     );
     if (res.status !== 200) {
-      let body = await res.json();
-      console.error(body);
+      $notification = {
+        type: "ERROR",
+        message: "Errore nella cancellazione dell'ingrediente",
+      };
       return;
     }
     fetchPlateIngredients();
@@ -63,7 +69,7 @@
 
 {#key $ingredients}
   <DashboardTable
-    {texts}
+    texts={{ ...texts, title: "Ingredienti" }}
     items={plateIngredients}
     {columns}
     {filter}

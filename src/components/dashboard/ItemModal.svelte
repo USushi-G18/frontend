@@ -73,7 +73,7 @@
               value={getValue(column)}
               on:input={(e) => handleInput(e, column)}
             >
-              {#each column.selectOptions || [] as opt}
+              {#each column.selectOptions ?? [] as opt}
                 <option>{opt}</option>
               {/each}
             </Select>

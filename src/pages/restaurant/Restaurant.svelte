@@ -1,15 +1,11 @@
 <script lang="ts">
   import { selectedMenu } from "../../store/selected_menu";
   import { Menu } from "../../models/menu";
-  import { P, TabItem, Tabs } from "flowbite-svelte";
+  import { TabItem, Tabs } from "flowbite-svelte";
   import PlateDisplay from "../../components/restaurant/PlatesDisplay.svelte";
-  import MenuSelectModal from "../../components/restaurant/MenuSelectModal.svelte";
   import { categories, plates } from "../../store/models";
 
   $: menu = $selectedMenu;
-  $: open =
-    $selectedMenu != undefined &&
-    !Object.keys(Menu).includes($selectedMenu as Menu);
 
   $: categoriesMenu = $plates
     .filter((p) => {
@@ -53,4 +49,3 @@
     {/each}
   </Tabs>
 </div>
-<MenuSelectModal bind:open />

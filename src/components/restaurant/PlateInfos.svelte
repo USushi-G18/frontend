@@ -19,8 +19,8 @@
       let ingredient = $ingredients.find((i) => i.id === pi.ingredientID);
       return {
         id: pi.ingredientID,
-        name: ingredient?.name || "",
-        allergen: allergen?.name || "",
+        name: ingredient?.name ?? "",
+        allergen: allergen?.name ?? "",
       };
     });
   };

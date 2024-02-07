@@ -5,7 +5,10 @@
   import { SushiUserType } from "../../models/sushi_user";
 </script>
 
-<form class="dark:bg-gray-900 bg-gray-300 rounded-lg w-[80%] sm:w-auto">
+<form
+  class="dark:bg-gray-900 bg-gray-300 rounded-lg w-[80%] sm:w-auto"
+  action="javascript:void(0);"
+>
   <Tabs
     style="underline"
     contentClass="p-4 bg-gray-200 dark:bg-gray-800 rounded-b-lg"

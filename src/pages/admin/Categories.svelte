@@ -3,12 +3,8 @@
   import DashboardTable from "../../components/dashboard/DashboardTable.svelte";
   import { texts } from "./texts";
   import { categories } from "../../store/models";
-  import {
-    createReq,
-    deleteReq,
-    fetchTable,
-    updateReq,
-  } from "../../utils/fetch";
+  import { postReq, deleteReq, fetchTable, putReq } from "../../utils/fetch";
+  import { notification } from "../../store/notification";
 
   $: items = $categories;
 
@@ -25,20 +21,26 @@
   };
 
   const handleCreate = async (event: CustomEvent) => {
-    let res = await createReq("category", event.detail);
+    let res = await postReq("category", event.detail);
     if (res.status !== 201) {
-      let body = await res.json();
-      console.error(body);
+      $notification = {
+        type: "ERROR",
+        message:
+          "Errore nella creazione della categoria. Potrebbe essere causato da valori duplicati",
+      };
       return;
     }
     $categories = await fetchTable("category");
   };
 
   const handleUpdate = async (event: CustomEvent) => {
-    let res = await updateReq(`category/${event.detail.id}`, event.detail);
+    let res = await putReq(`category/${event.detail.id}`, event.detail);
     if (res.status !== 200) {
-      let body = await res.json();
-      console.error(body);
+      $notification = {
+        type: "ERROR",
+        message:
+          "Errore nella modifica della categoria. Potrebbe essere causato da valori duplicati",
+      };
       return;
     }
     $categories = await fetchTable("category");
@@ -47,8 +49,10 @@
   const handleDelete = async (event: CustomEvent) => {
     let res = await deleteReq(`category/${event.detail.id}`);
     if (res.status !== 200) {
-      let body = await res.json();
-      console.error(body);
+      $notification = {
+        type: "ERROR",
+        message: "Errore nella rimozione della categoria",
+      };
       return;
     }
     $categories = await fetchTable("category");

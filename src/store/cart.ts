@@ -3,7 +3,7 @@ import type { CartItem } from "../models/cart";
 
 // init the cart with the value saved in localStorage
 const initialCart: CartItem[] = JSON.parse(
-  localStorage.getItem("cart") || "[]"
+  localStorage.getItem("cart") ?? "[]"
 );
 
 export const cart = writable(initialCart);

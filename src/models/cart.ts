@@ -1,4 +1,5 @@
 export type CartItem = {
   plateID: number;
-  quantity: number;
+  orderedQuantity: number;
+  cartQuantity: number;
 };

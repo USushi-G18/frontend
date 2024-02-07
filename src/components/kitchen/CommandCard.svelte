@@ -5,6 +5,11 @@
 
   export let table: number;
   export let commands: Command[];
+
+  const atToTime = (at: string) => {
+    let date = new Date(at);
+    return `${date.getHours()}:${date.getMinutes()}`;
+  };
 </script>
 
 <Card padding="md" class="w-full">
@@ -15,7 +20,7 @@
     {#each commands as command}
       <tr>
         <td>
-          {command.at.getHours()}:{command.at.getMinutes()}
+          {atToTime(command.at)}
         </td>
         <td
           class="max-w-[9rem] text-ellipsis overflow-hidden whitespace-nowrap"
@@ -30,7 +35,7 @@
           </span>
         </td>
         <td>
-          <CommandStatus state={command.status} />
+          <CommandStatus {command} />
         </td>
       </tr>
     {/each}

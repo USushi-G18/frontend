@@ -1,51 +1,98 @@
+import { SushiUserType } from "../models/sushi_user";
+
 const ADMIN_BASE_URL = "http://localhost:8081/admin";
 const EMPLOYEE_BASE_URL = "http://localhost:8082/employee";
 const CLIENT_BASE_URL = "http://localhost:8082/client";
-const TOKEN =
-  "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDc2NzYxNzEsImlhdCI6MTcwNzA3MTM3MSwiaXNzIjoidS1zdXNoaSIsInVzZXJUeXBlIjoiQWRtaW4ifQ.jissKfOKFQ6n-o5YD2P6KrkD06X9K0kEAEagsxndPL4-5SebZC1lxUxjZXUD25AWuWoTfrww0IexH25Vt7ffrTftVGiwM5CoLv8YFu6e8_tBLm5KnnkJMyC4qeH8du3C6WDxhZx9LpYPh_qrGJCdVKpL_PcASNHuBQxA-wYa81hcTsqCE3TrWxMdFGoDzqGr25-vrdiulOUySiMwtCSAUt8RdhWLUY_lQo5wjhmSK1oL0943Wp4D5ef_6koMPvLWWpOXzYR4-XCznih9WVPmbQAuejGUNFe0AjaSzkTUSqGlHcLcQu81XafmbjUArqRuPwJMnnnz42pwQCOrG-iNgA";
 
-export async function fetchTable<T>(url: string): Promise<T[]> {
-  const req = await fetch(`${ADMIN_BASE_URL}/${url}`, {
+export async function fetchTable<T>(
+  url: string,
+  { user } = { user: SushiUserType.Admin }
+): Promise<T[]> {
+  const req = await request(url, {
     method: "GET",
+    body: undefined,
+    user: user,
+  });
+  if (req.status !== 200) {
+    console.log("error");
+    throw Error();
+  }
+  return req.json();
+}
+
+function urlFromUser(user: SushiUserType): string {
+  switch (user) {
+    case SushiUserType.Admin:
+      return ADMIN_BASE_URL;
+    case SushiUserType.Client:
+      return CLIENT_BASE_URL;
+    case SushiUserType.Employee:
+      return EMPLOYEE_BASE_URL;
+  }
+}
+
+function tokenFromUser(user: SushiUserType): string {
+  const key = `${user.toUpperCase()}_TOKEN`;
+  return localStorage.getItem(key) ?? "";
+}
+
+type RequestArgs = {
+  method: "GET" | "POST" | "PUT" | "DELETE";
+  body: any;
+  user: SushiUserType;
+};
+
+async function request(
+  url: string,
+  { method, body, user }: RequestArgs = {
+    method: "POST",
+    body: undefined,
+    user: SushiUserType.Admin,
+  }
+) {
+  const baseUrl = urlFromUser(user);
+  const token = tokenFromUser(user);
+  return fetch(`${baseUrl}/${url}`, {
+    method: method,
     headers: {
-      Authorization: TOKEN,
+      Authorization: `Bearer ${token}`,
     },
+    body: body === undefined ? undefined : JSON.stringify(body),
+  });
+}
+
+export async function fetchReq<T>(
+  url: string,
+  { user } = { user: SushiUserType.Admin }
+): Promise<T> {
+  const req = await request(url, {
+    method: "GET",
+    body: undefined,
+    user: user,
   });
   return req.json();
 }
 
-export async function createReq(url: string, body: any): Promise<Response> {
-  const res = await fetch(`${ADMIN_BASE_URL}/${url}`, {
-    method: "POST",
-    headers: {
-      Authorization: TOKEN,
-    },
-    body: JSON.stringify(body),
-  });
-  return res;
-}
-
-export async function updateReq(
+export async function postReq(
   url: string,
   body: any,
-  { method } = { method: "PUT " }
+  { user }: { user: SushiUserType } = { user: SushiUserType.Admin }
 ): Promise<Response> {
-  const res = await fetch(`${ADMIN_BASE_URL}/${url}`, {
-    method: method,
-    headers: {
-      Authorization: TOKEN,
-    },
-    body: JSON.stringify(body),
-  });
-  return res;
+  return request(url, { method: "POST", body: body, user: user });
+}
+
+export async function putReq(
+  url: string,
+  body: any,
+  { user }: { user: SushiUserType } = { user: SushiUserType.Admin }
+): Promise<Response> {
+  return request(url, { method: "PUT", body: body, user: user });
 }
 
 export async function deleteReq(url: string): Promise<Response> {
-  const res = await fetch(`${ADMIN_BASE_URL}/${url}`, {
+  return request(url, {
     method: "DELETE",
-    headers: {
-      Authorization: TOKEN,
-    },
+    body: undefined,
+    user: SushiUserType.Admin,
   });
-  return res;
 }

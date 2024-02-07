@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Router, Route } from "svelte-navigator";
+  import { Router, Route, Link } from "svelte-navigator";
   import { CartOutline } from "flowbite-svelte-icons";
   import MenuIcon from "./components/icons/MenuIcon.svelte";
 
@@ -12,6 +12,7 @@
 
   import Restaurant from "./pages/restaurant/Restaurant.svelte";
   import Cart from "./pages/restaurant/Cart.svelte";
+  import { Toast } from "flowbite-svelte";
 </script>
 
 <Router primary={false}>
@@ -32,12 +33,12 @@
       <MainView>
         <SiteNavbar slot="navbar" logout>
           <div slot="right" class="flex space-x-1">
-            <a
-              href="/restaurant/cart"
+            <Link
+              to="cart"
               class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5"
             >
               <CartOutline />
-            </a>
+            </Link>
           </div>
         </SiteNavbar>
         <Restaurant slot="content" />
@@ -47,12 +48,12 @@
       <MainView>
         <SiteNavbar slot="navbar" logout>
           <div slot="right" class="flex space-x-1">
-            <a
-              href="/restaurant"
+            <Link
+              to="../"
               class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5"
             >
               <MenuIcon />
-            </a>
+            </Link>
           </div>
         </SiteNavbar>
         <Cart slot="content" />

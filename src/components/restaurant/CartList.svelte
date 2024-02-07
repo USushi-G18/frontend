@@ -5,22 +5,55 @@
   import AmountSelector from "../AmountSelector.svelte";
   import type { Plate } from "../../models/plate";
   import { plates } from "../../store/models";
+  import { postReq } from "../../utils/fetch";
+  import { notification } from "../../store/notification";
+  import { SushiUserType } from "../../models/sushi_user";
 
   const removeItemFromCart = (id: number) => {
-    $cart = $cart.filter((cartItem) => cartItem.plateID != id);
+    $cart = $cart.filter((cartItem) => cartItem.plateID !== id);
   };
 
   let cartPlates: Plate[];
   $: cartPlates = $cart
+    .filter((c) => c.cartQuantity > 0)
     .map((i) => $plates.find((p) => p.id === i.plateID))
     .filter((p) => p !== undefined) as Plate[];
 
   $: {
     cartPlates.sort((p1, p2) => p1.id - p2.id);
   }
+
+  const handleSendCart = async () => {
+    let res = await postReq(
+      `command`,
+      $cart.map((c) => {
+        return { plateID: c.plateID, quantity: c.cartQuantity };
+      }),
+      { user: SushiUserType.Client }
+    );
+    if (res.status !== 201) {
+      $notification = {
+        type: "ERROR",
+        message:
+          "Qualcosa è andato storto mentre si mandava la comanda. Riprova",
+      };
+      return;
+    }
+    $cart = $cart.map((c) => {
+      return {
+        plateID: c.plateID,
+        orderedQuantity: c.orderedQuantity + c.cartQuantity,
+        cartQuantity: 0,
+      };
+    });
+    $notification = {
+      type: "INFO",
+      message: "Comanda mandata con successo",
+    };
+  };
 </script>
 
-{#if $cart.length != 0}
+{#if $cart.length !== 0}
   <div class="flex flex-col items-left">
     <Heading tag="h1" class="my-5 w-max" customSize="text-4xl font-bold "
       >Carrello</Heading
@@ -62,8 +95,6 @@
     </List>
   </div>
   <div class="w-[15%] bottom-10 right-10 absolute flex flex-col gap-4">
-    <Button size="lg" on:click={() => console.log("INVIA L'ORDINE")}
-      >Invia Ordine</Button
-    >
+    <Button size="lg" on:click={handleSendCart}>Invia Ordine</Button>
   </div>
 {/if}

@@ -2,7 +2,8 @@
   import { Modal, Label, Helper, Button } from "flowbite-svelte";
   import PwInput from "../PwInput.svelte";
   import { sushiUserName, type SushiUserType } from "../../models/sushi_user";
-  import { updateReq } from "../../utils/fetch";
+  import { postReq } from "../../utils/fetch";
+  import { notification } from "../../store/notification";
 
   export let user: SushiUserType;
   export let openModal: boolean;
@@ -23,16 +24,21 @@
   }
 
   const handleChangePassword = async () => {
-    let req = await updateReq(
-      `auth/password/${user}`,
-      {
-        newPassword: newPassword,
-        oldPassword: oldPassword,
-      },
-      {
-        method: "POST",
-      }
-    );
+    let res = await postReq(`auth/password/${user}`, {
+      newPassword: newPassword,
+      oldPassword: oldPassword,
+    });
+    if (res.status !== 200) {
+      $notification = {
+        type: "ERROR",
+        message: "Errore. Controlla che la password sia corretta",
+      };
+    } else {
+      $notification = {
+        type: "INFO",
+        message: "Password cambiata con successo",
+      };
+    }
   };
 </script>
 
@@ -58,7 +64,7 @@
       <PwInput bind:value={repeatPassword} {color} />
       <Helper
         class="mt-2"
-        color={repeatPassword == newPassword ? "green" : "red"}
+        color={repeatPassword === newPassword ? "green" : "red"}
       >
         {#if newPassword !== "" && repeatPassword !== ""}
           {#if newPassword !== repeatPassword}

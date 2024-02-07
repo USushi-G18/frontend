@@ -47,7 +47,7 @@ export function commandStatusName(status: CommandStatus): string {
 export type Command = {
   sessionID: number;
   plateID: number;
-  at: Date;
+  at: string;
   quantity: number;
   status: CommandStatus;
 };

@@ -8,12 +8,8 @@
   import { Tooltip } from "flowbite-svelte";
   import { useNavigate } from "svelte-navigator";
   import { categories, plates } from "../../store/models";
-  import {
-    createReq,
-    fetchTable,
-    deleteReq,
-    updateReq,
-  } from "../../utils/fetch";
+  import { postReq, fetchTable, deleteReq, putReq } from "../../utils/fetch";
+  import { notification } from "../../store/notification";
 
   const navigate = useNavigate();
 
@@ -73,20 +69,26 @@
   ];
 
   const handleCreate = async (event: CustomEvent) => {
-    let res = await createReq("plate", event.detail);
+    let res = await postReq("plate", event.detail);
     if (res.status !== 201) {
-      let body = await res.json();
-      console.error(body);
+      $notification = {
+        type: "ERROR",
+        message:
+          "Errore nella creazione del piatto. Controlla che i parametri siano corretti",
+      };
       return;
     }
     $plates = await fetchTable("plate");
   };
 
   const handleUpdate = async (event: CustomEvent) => {
-    let res = await updateReq(`plate/${event.detail.id}`, event.detail);
+    let res = await putReq(`plate/${event.detail.id}`, event.detail);
     if (res.status !== 200) {
-      let body = await res.json();
-      console.error(body);
+      $notification = {
+        type: "ERROR",
+        message:
+          "Errore nella modifica del piatto. Controlla che i parametri siano corretti",
+      };
       return;
     }
     $plates = await fetchTable("plate");
@@ -95,8 +97,10 @@
   const handleDelete = async (event: CustomEvent) => {
     let res = await deleteReq(`plate/${event.detail.id}`);
     if (res.status !== 200) {
-      let body = await res.json();
-      console.error(body);
+      $notification = {
+        type: "ERROR",
+        message: "Errore nella rimozione del piatto",
+      };
       return;
     }
     $plates = await fetchTable("plate");
