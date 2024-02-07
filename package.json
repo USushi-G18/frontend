@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "flowbite-svelte": "^0.44.19",
-    "flowbite-svelte-icons": "^0.4.5"
+    "flowbite-svelte-icons": "^0.4.5",
+    "svelte-navigator": "^3.2.2"
   }
 }
