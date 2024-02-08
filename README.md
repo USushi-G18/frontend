@@ -1,13 +1,15 @@
 # PROJECT STRUCTURE
 
-- **src/components** 
-The various componentes that compose the ui like card PlateCard and DashboardTable
+- **src/components**
+  The various componentes that compose the ui like card PlateCard and DashboardTable
 
-- **src/models** 
-The various types that compose the code like Plate
+- **src/models**
+  The various types that compose the code like Plate
 
 - **src/pages**
-The various pages like AdminDashboard
+  The various pages like AdminDashboard
 
 - **src/store**
-The (global) state managment code
+  The (global) state managment code
+
+### This repo should be used only for vercel deployment
