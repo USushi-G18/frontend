@@ -1,8 +1,8 @@
 import { SushiUserType } from "../models/sushi_user";
 
-const ADMIN_BASE_URL = "https://167.172.191.111/api/admin";
-const EMPLOYEE_BASE_URL = "https://167.172.191.111/api/employee";
-const CLIENT_BASE_URL = "https://167.172.191.111/api/client";
+const ADMIN_BASE_URL = "https://u-sushi.it/api/admin";
+const EMPLOYEE_BASE_URL = "https://u-sushi.it/api/employee";
+const CLIENT_BASE_URL = "https://u-sushi.it/api/client";
 
 export async function fetchTable<T>(
   url: string,
