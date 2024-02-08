@@ -59,7 +59,7 @@
       $selectedMenu = menu;
     }
     if (user !== SushiUserType.Employee) {
-      await fetchAll();
+      fetchAll();
     }
     switch (user) {
       case SushiUserType.Admin:
