@@ -7,7 +7,7 @@
   let visible = false;
 </script>
 
-<Input type={visible ? "text" : "password"} {color} bind:value>
+<Input type={visible ? "text" : "password"} {color} bind:value placeholder="default password: u-sushi">
   <button
     type="button"
     slot="right"
