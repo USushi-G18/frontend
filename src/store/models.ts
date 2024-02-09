@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
 import type { Category } from "../models/category";
 import type { Plate } from "../models/plate";
-import { fetchLimited, fetchTable } from "../utils/fetch";
+import { fetchTable, request } from "../utils/fetch";
 import { SushiUserType } from "../models/sushi_user";
 
 export const images = writable<Image[]>([]);
@@ -11,9 +11,7 @@ export const ingredients = writable<Ingredient[]>([]);
 export const plates = writable<Plate[]>([]);
 
 export async function fetchAll() {
-  const image = await fetchLimited<Image>("image");
-  console.log(image.length);
-  images.set(image);
+  fetchImages("image");
 
   const [category, allergen, ingredient, plate] = await Promise.all(
     ["category", "allergen", "ingredient", "plate"].map((url) => {
@@ -30,3 +28,33 @@ export async function fetchAll() {
   plates.set(plate as Plate[]);
 }
 fetchAll();
+
+async function fetchImages(url: string) {
+  const limit = 20;
+  let offset = 0;
+  while (true) {
+    let req;
+    if (localStorage.getItem("CLIENT_TOKEN")) {
+      req = await request(`${url}?limit=${limit}&offset=${offset}`, {
+        method: "GET",
+        body: undefined,
+        user: SushiUserType.Client,
+      });
+    } else {
+      req = await request(`${url}?limit=${limit}&offset=${offset}`, {
+        method: "GET",
+        body: undefined,
+        user: SushiUserType.Admin,
+      });
+    }
+    let others = await req.json();
+    images.update((v) => {
+      v.push(...others);
+      return v;
+    });
+    if (others.length < limit) {
+      return;
+    }
+    offset += limit;
+  }
+}

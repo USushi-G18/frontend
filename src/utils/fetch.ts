@@ -4,28 +4,6 @@ const ADMIN_BASE_URL = "https://u-sushi.it/api/admin";
 const EMPLOYEE_BASE_URL = "https://u-sushi.it/api/employee";
 const CLIENT_BASE_URL = "https://u-sushi.it/api/client";
 
-export async function fetchLimited<T>(
-  url: string,
-  { user } = { user: SushiUserType.Admin }
-): Promise<T[]> {
-  const items = [];
-  const limit = 10;
-  let offset = 0;
-  while (true) {
-    const req = await request(`${url}?limit=${limit}&offset=${offset}`, {
-      method: "GET",
-      body: undefined,
-      user: user,
-    });
-    let others = await req.json();
-    items.push(...others);
-    if (others.length < limit) {
-      return items;
-    }
-    offset += limit;
-  }
-}
-
 export async function fetchTable<T>(
   url: string,
   { user } = { user: SushiUserType.Admin }
@@ -63,7 +41,7 @@ type RequestArgs = {
   user: SushiUserType;
 };
 
-async function request(
+export async function request(
   url: string,
   { method, body, user }: RequestArgs = {
     method: "POST",
